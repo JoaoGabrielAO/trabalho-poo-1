@@ -1,0 +1,154 @@
+public abstract class Veiculo {
+	
+	
+	private String marca;
+	private String modelo;
+	private int ano;
+    private double valorDiario;
+    private String placa;
+	
+    
+    public String getMarca() {
+		return marca;
+	}
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+	public String getModelo() {
+		return modelo;
+	}
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+	public int getAno() {
+		return ano;
+	}
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+	public double getValorDiario() {
+		return valorDiario;
+	}
+	public void setValorDiario(double valorDiario) {
+		this.valorDiario = valorDiario;
+	}
+	public String getPlaca() {
+		return placa;
+	}
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+	public double calcularAluguel(int dias) {
+		
+		return 0;
+	}
+    
+
+	
+    
+    
+}
+
+public class Carro extends Veiculo {
+    private int quantidadePortas;
+    private static final double TAXA_LIMPEZA = 50.00;
+
+    public Carro(String marca, String modelo, int ano, double valorDiaria, String placa, int quantidadePortas) {
+        super();
+        this.quantidadePortas = quantidadePortas;
+    }
+
+   
+	@Override
+    public double calcularAluguel(int dias) {
+        return (dias * getValorDiario()) + TAXA_LIMPEZA;
+    }
+
+    public int getQuantidadePortas() {
+        return quantidadePortas;
+    }
+
+    public void setQuantidadePortas(int quantidadePortas) {
+        this.quantidadePortas = quantidadePortas;
+    }
+}
+
+public class Moto1 extends Veiculo {
+    private int cilindrada;
+    private static final double DESCONTO_MOTO = 0.05; 
+
+    	public Moto1(String marca, String modelo, int ano, double valorDiaria, String placa, int cilindrada) {
+            
+            this.cilindrada = cilindrada;
+        }
+
+        public void Moto(String marca, String modelo, int ano, double valorDiaria, String placa, int cilindrada2) {
+			
+		}
+
+		@Override
+        public double calcularAluguel(int dias) {
+            double valorBase = dias * getValorDiario();
+            return valorBase - (valorBase * DESCONTO_MOTO);
+        }
+
+        public int getCilindrada() {
+            return cilindrada;
+        }
+
+        public void setCilindrada(int cilindrada) {
+            this.cilindrada = cilindrada;
+        }
+    }
+
+public class Caminhao extends Veiculo {
+    private double capacidadeCarga;
+    private static final double TAXA_MANUTENCAO = 200.00;
+
+    public Caminhao(String marca, String modelo, int ano, double valorDiaria, String placa, double capacidadeCarga) {
+        this.capacidadeCarga = capacidadeCarga;
+    }
+
+    @Override
+    public double calcularAluguel(int dias) {
+        return (dias * getValorDiario()) + TAXA_MANUTENCAO;
+    }
+
+    public double getCapacidadeCarga() {
+        return capacidadeCarga;
+    }
+
+    public void setCapacidadeCarga(double capacidadeCarga) {
+        this.capacidadeCarga = capacidadeCarga;
+    }
+}
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Principal {
+    public static void main(String[] args) {
+        
+        List<Veiculo> veiculos = new ArrayList<>();
+        
+      
+        veiculos.add(new Carro("Toyota", "Corolla", 2022, 100.0, "ABC-1234", 4));
+        veiculos.add(new Moto1("Honda", "CG 160", 2023, 50.0, "DEF-5678", 160));
+        veiculos.add(new Caminhao("Volvo", "FH 540", 2020, 300.0, "GHI-9000", 15.5));
+
+        int dias = 2;
+        
+        System.out.println("=== LOCADORA DE VEÍCULOS ===");
+        System.out.println("Aluguel por " + dias + " dias\n");
+        
+        
+        for (Veiculo veiculo : veiculos) {
+            double valor = veiculo.calcularAluguel(dias);
+            System.out.printf("%s %s - Placa: %s - R$ %.2f%n",
+                veiculo.getMarca(),
+                veiculo.getModelo(),
+                veiculo.getPlaca(),
+                valor);
+        }
+    }
+}
