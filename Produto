@@ -1,0 +1,126 @@
+public class Main {
+    public static void main(String[] args) {
+        ProdutoPerecivel cafe = new ProdutoPerecivel();
+        cafe.setCategoria("Alimento");
+        cafe.setNome("Café");
+        cafe.setCodigoBarras("3721873812738217");
+        cafe.setPrecoBase(29.00);
+
+        System.out.printf("\n Nome : " + cafe.getNome() + "\n Categoria : " + cafe.getCategoria() + "\n CodigoBarras : " + cafe.getCodigoBarras() + "\n PrecoBase : " + cafe.getPrecoBase() + "\n PrecoFinal : " + cafe.calcularPrecoFinal());
+
+        ProdutoNacional blusa = new ProdutoNacional();
+        blusa.setNome("Blusa");
+        blusa.setCategoria("Roupa");
+        blusa.setCodigoBarras("4472647647467994");
+        blusa.setPrecoBase(60.00);
+
+        System.out.printf("\n\n Nome : " + blusa.getNome() + "\n Categoria : " + blusa.getCategoria() + "\n CodigoBarras : " + blusa.getCodigoBarras() + "\n PrecoBase : " + blusa.getPrecoBase() + "\n PrecoFinal : " + blusa.calcularPrecoFinal());
+
+        ProdutoImportado celular = new ProdutoImportado();
+        celular.setNome("Iphone");
+        celular.setCategoria("Eletronicos");
+        celular.setCodigoBarras("78474878247874733");
+        celular.setPrecoBase(8000);
+
+        System.out.printf("\n\n Nome : " + celular.getNome() + "\n Categoria : " + celular.getCategoria() + "\n CodigoBarras : " + celular.getCodigoBarras() + "\n PrecoBase : " + celular.getPrecoBase() + "\n PrecoFinal : " + celular.calcularPrecoFinal());
+
+    }
+
+public abstract class Produto {
+    private String nome;
+    private double precoBase;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public double getPrecoBase() {
+        return precoBase;
+    }
+
+    public void setPrecoBase(double precoBase) {
+        this.precoBase = precoBase;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getCodigoBarras() {
+        return codigoBarras;
+    }
+
+    public void setCodigoBarras(String codigoBarras) {
+        this.codigoBarras = codigoBarras;
+    }
+
+    private String categoria;
+    private String codigoBarras;
+
+    public abstract double calcularPrecoFinal();
+
+}
+
+public class ProdutoImportado extends Produto {
+    private String paisOrigem;
+
+    public String getPaisOrigem() {
+        return paisOrigem;
+    }
+
+    public void setPaisOrigem(String paisOrigem) {
+        this.paisOrigem = paisOrigem;
+    }
+
+    @Override
+    public double calcularPrecoFinal() {
+        double preco = getPrecoBase();
+        return preco + (preco * 0.15);
+    }
+}
+
+
+public class ProdutoNacional extends Produto {
+    private String fabricate;
+
+    public String getFabricate() {
+        return fabricate;
+    }
+
+    public void setFabricate(String fabricate) {
+        this.fabricate = fabricate;
+    }
+
+    @Override
+    public double calcularPrecoFinal() {
+        return getPrecoBase();
+
+    }
+}
+
+
+public class ProdutoPerecivel extends Produto{
+    public String dataValidade;
+
+    public String getDataValidade() {
+        return dataValidade;
+    }
+
+    public void setDataValidade(String dataValidade) {
+        this.dataValidade = dataValidade;
+    }
+
+    @Override
+    public double calcularPrecoFinal() {
+        double preco = getPrecoBase();
+        return preco - (preco * 0.2);
+    }
+}
