@@ -1,0 +1,125 @@
+public abstract class Ingresso {
+    private double valor;
+    private String local;
+    private String data;
+    private int lote;
+
+    public abstract double calcularValorFinal();
+
+    public int getLote() {
+        return lote;
+    }
+
+    public void setLote(int lote) {
+        this.lote = lote;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+}
+
+
+public class IngressoCortesia extends Ingresso {
+    private String patrocinador;
+
+    public String getPatrocinador() {
+        return patrocinador;
+    }
+
+    public void setPatrocinador(String patrocinador) {
+        this.patrocinador = patrocinador;
+    }
+
+    @Override
+    public double calcularValorFinal() {
+        return 0;
+    }
+}
+
+public class IngressoEstudante extends Ingresso {
+    private String instituicaoEnsino;
+
+    public String getInstituicaoEnsino() {
+        return instituicaoEnsino;
+    }
+
+    public void setInstituicaoEnsino(String instituicaoEnsino) {
+        this.instituicaoEnsino = instituicaoEnsino;
+    }
+
+    @Override
+    public double calcularValorFinal() {
+        double valoBase = getValor();
+        return valoBase - (valoBase / 2);
+    }
+}
+
+
+public class IngressoVIP extends Ingresso{
+    private String areaVIP;
+
+    public String getAreaVIP() {
+        return areaVIP;
+    }
+
+    public void setAreaVIP(String areaVIP) {
+        this.areaVIP = areaVIP;
+    }
+
+    @Override
+    public double calcularValorFinal() {
+        double valorBase = getValor();
+        return  valorBase + 100;
+    }
+}
+
+public class Principal {
+    public static void main(String[] args) {
+
+        IngressoCortesia i1 = new IngressoCortesia();
+        i1.setPatrocinador("Catolica");
+        i1.setData("2/09/2025");
+        i1.setLocal("Catolica de brasilia");
+        i1.setValor(150);
+
+        System.out.printf("Data: " + i1.getData() + "\nLocal: " + i1.getLocal() + "\nValor: " + i1.getValor() + "\nPreço Final: " + i1.calcularValorFinal() + "\nPatrocinador: " + i1.getPatrocinador() + "\n\n");
+
+        IngressoVIP i2 = new IngressoVIP();
+        i2.setAreaVIP("Catolica - Passarela");
+        i2.setData("2/09/2025");
+        i2.setLocal("Catolica de brasilia");
+        i2.setValor(150);
+
+        System.out.printf("Data: " + i2.getData() + "\nLocal: " + i2.getLocal() + "\nValor: " + i2.getValor() + "\nPreço Final: " + i2.calcularValorFinal() + "\nArea VIP" + i2.getAreaVIP() + "\n\n" );
+
+        IngressoEstudante i3 = new IngressoEstudante();
+        i3.setInstituicaoEnsino("UniCEUB");
+        i3.setData("2/09/2025");
+        i3.setLocal("CEUB Taguatinga ");
+        i3.setValor(150);
+
+        System.out.printf("Data: " + i3.getData() + "\nLocal: " + i3.getLocal() + "\nValor: " + i3.getValor() + "\nPreço Final: " + i3.calcularValorFinal() + "\nInstituição de Ensino: " + i3.getInstituicaoEnsino() + "\n\n" );
+
+    }
+}
