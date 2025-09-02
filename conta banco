@@ -1,0 +1,98 @@
+public abstract class Conta {
+    private String numero;
+    private String titular;
+    private double saldo;
+    private String agencia;
+
+    public abstract double calcularSaldoFinal();
+
+    public void depositar(double valor){
+        double saldoAtual = getSaldo();
+        setSaldo(saldoAtual + valor);
+    }
+    public void sacar(double valor){
+        double saldoAtual = getSaldo();
+        setSaldo(saldoAtual - valor);
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public String getTitular() {
+        return titular;
+    }
+
+    public void setTitular(String titular) {
+        this.titular = titular;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public String getAgencia() {
+        return agencia;
+    }
+
+    public void setAgencia(String agencia) {
+        this.agencia = agencia;
+    }
+
+
+public class ContaCorrente extends Conta {
+    private double limiteChequeEspecial;
+
+    @Override
+    public double calcularSaldoFinal() {
+        double saldo = getSaldo();
+        return saldo + 15;
+    }
+}
+
+
+public class ContaPoupanca extends Conta {
+
+    private int aniversarioConta;
+
+    @Override
+    public double calcularSaldoFinal() {
+        return getSaldo() * 1.02;
+    }
+
+    public int getAniversarioConta() {
+        return aniversarioConta;
+    }
+
+    public void setAniversarioConta(int aniversarioConta) {
+        this.aniversarioConta = aniversarioConta;
+    }
+}
+
+public class ContaSalario extends Conta {
+    @Override
+    public double calcularSaldoFinal() {
+        return 0;
+    }
+}
+
+public class Sistema_De_Contas {
+    public static void main(String[] args) {
+
+        ContaCorrente cc = new ContaCorrente();
+        cc.setSaldo(1000);
+        cc.setAgencia("1606");
+        cc.setNumero("05");
+        cc.setTitular("Molina");
+        cc.calcularSaldoFinal();
+
+    }
+}
