@@ -1,0 +1,138 @@
+public abstract class Animal {
+        private String nome;
+        private int idade;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public String getHabitat() {
+        return habitat;
+    }
+
+    public void setHabitat(String habitat) {
+        this.habitat = habitat;
+    }
+
+    private double peso;
+        private String habitat;
+
+    public abstract String emitirSom();
+    public abstract String alimentar();
+}
+
+public class Cachorro extends Animal {
+    private String raca;
+
+    public String getRaca() {
+        return raca;
+    }
+
+    public void setRaca(String raca) {
+        this.raca = raca;
+    }
+
+    @Override
+    public String emitirSom() {
+        return "latido";
+    }
+
+    @Override
+    public String alimentar() {
+        return "ração";
+        }
+    }
+
+public class Gato extends Animal {
+    private String cor;
+
+    public String getCor() {
+        return cor;
+    }
+
+    public void setCor(String cor) {
+        this.cor = cor;
+    }
+    @Override
+    public String emitirSom() {
+        return "Miau";
+    }
+    @Override
+    public String alimentar() {
+        return "ração de gato";
+    }
+}
+
+public class Leao extends Animal {
+    private double tamanhoJuba;
+
+    public double getTamanhoJuba() {
+        return tamanhoJuba;
+    }
+
+    public void setTamanhoJuba(double tamanhoJuba) {
+        this.tamanhoJuba = tamanhoJuba;
+    }
+
+    @Override
+    public String emitirSom() {
+        return "Rugido";
+    }
+
+    @Override
+    public String alimentar() {
+        return "carne";
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args){
+        Cachorro pug = new Cachorro();
+        pug.setNome("pastor");
+        pug.setRaca("pincher");
+        pug.setHabitat("canil");
+        pug.setIdade(10);
+        pug.setPeso(12);
+
+        System.out.printf("\n Nome: " + pastor.getNome() + "\n Raca: " + pastor.getRaca() + "\n Habitat: " + pastor.getHabitat() + "\n Idade: " + pastor.getIdade() + "\n Peso: " + pastor.getPeso() + "\n" + pastor.emitirSom() + "\n" + pastor.alimentar());
+
+        Gato frajola = new Gato();
+        garfield.setHabitat("petshop");
+            garfield.setIdade(8);
+        garfield.setNome("frajola");
+        garfield.setPeso(7);
+        garfield.setCor("preto");
+
+        System.out.printf("\n\n Nome: " + frajola.getNome() + "\nHabitat: " + frajola.getHabitat() + "\n Idade: " + frajola.getIdade() + "\n Peso: " + frajola.getPeso() + "\n Cor: " + frajola.getCor() + "\n" + frajola.emitirSom() + "\n" + frajola.alimentar());
+
+        Leao simba = new Leao();
+        simba.setNome("lion");
+        simba.setHabitat("selva");
+        simba.setIdade(14);
+        simba.setPeso(42);
+        simba.setTamanhoJuba(4);
+
+        System.out.printf("\n\n Nome: " + lion.getNome() + "\n Raca:" + lion.getHabitat() + "\n Idade:" + lion.getIdade() + "\n Peso: " + lion.getPeso() + "\n tamanhoJuba: " + lion.getTamanhoJuba() + "\n" + lion.emitirSom() + "\n" + lion.alimentar());
+    }
+}
